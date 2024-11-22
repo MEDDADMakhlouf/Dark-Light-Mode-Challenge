@@ -56,4 +56,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // Jetpack Compose dependencies
+    /*implementation "androidx.compose.ui:ui:1.4.0"
+    implementation "androidx.compose.material:material:1.4.0"
+    implementation "androidx.compose.ui:tooling-preview:1.4.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    implementation "androidx.activity:activity-compose:1.6.1"
+
+    // For theme management using a ViewModel (optional for state management)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+
+    // SharedPreferences for persistent theme state
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
+    // To use the `Provider` like package, we will use `hilt` or `ViewModel` as an alternative
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"*/
 }
