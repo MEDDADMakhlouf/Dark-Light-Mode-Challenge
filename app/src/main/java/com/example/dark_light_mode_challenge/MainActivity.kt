@@ -3,62 +3,75 @@ package com.example.dark_light_mode_challenge
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.ViewModelProvider
 import com.example.dark_light_mode_challenge.ui.theme.DarkLightModeChallengeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //val themeViewModel : ThemeViewModel by viewModels { themeviewModelFactory(applicationContext)  }
        //  enableEdgeToEdge()
+        val themeViewModelFactory = ThemeViewModelFactory(applicationContext)
+        val themeViewModel = ViewModelProvider(this, themeViewModelFactory).get(ThemeViewModel::class.java)
+
         setContent {
             // DarkLightModeChallengeTheme
+            val isDarkMode by themeViewModel._isDarkTheme.collectAsState()
             DarkLightModeChallengeTheme {
-                val themeViewModel:ThemeViewModel = viewModel(factory = ThemeViewModelFactory(applicationContext))
-                val isDarktheme = themeViewModel.ieDarkTheme.collectAsState()
+                ThemeContent(themeViewModel = themeViewModel
+                    ,isDarkMode = isDarkMode,)
 
-                //wrap your screen content in the thrme manager to switch between
-                ThemeSwitcher(isDarkMode = isDarktheme.value){
-                    MainScreen(themeViewModel)
-                }
+
             }
         }
     }
 }
 
 @Composable
-fun MainScreen(viewModel: ThemeViewModel){
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
-            .padding(16.dp)
-    ) {
-        Text(text = "Dark/Light Mode UI", style = MaterialTheme.typography.titleLarge)
-        Spacer(modifier = Modifier.padding(16.dp))
-        Button(onClick = {viewModel.toggleTheme()}) {
-            Text(text = "Toggle Theme")
-        }
-
+fun ThemeContent(themeViewModel: ThemeViewModel , isDarkMode: Boolean) {
+    Button(onClick = {themeViewModel.toggleTheme() }) {
+        Text(text = "Toggle Theme")
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview(){
-    DarkLightModeChallengeTheme {
-        MainScreen(viewModel = ThemeViewModel())
-    }
+//
+//@Composable
+//fun MainScreen(viewModel: ThemeViewModel){
+//    Column(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .wrapContentSize(Alignment.Center)
+//            .padding(16.dp)
+//    ) {
+//        Text(text = "Dark/Light Mode UI",
+//            style = MaterialTheme.typography.titleLarge)
+//
+//        Spacer(modifier = Modifier.padding(16.dp))
+//
+//        Button(onClick = {viewModel.toggleTheme() }) {
+//            Text(text = "Toggle Theme")
+//        }
+//
+//    }
+//}
+//
+//@Composable
+//fun DarkLightModeChallengeTheme(isDarkTheme: Boolean, content: @Composable () -> Unit) {
+//    MaterialTheme(
+//        colorScheme = if (isDarkTheme) DarkColorScheme else LightColorScheme,
+//        content = content
+//    )
+//}
+//
+//@Preview(showBackground = true)
+//@Composable
+//fun MainScreenPreview() {
+//    val themeViewModel = ThemeViewModel(applicationContext= LocalContext.current)
+//    DarkLightModeChallengeTheme (isDarkTheme = false){
+//        MainScreen(viewModel = ThemeViewModel )
+//    }
+//}

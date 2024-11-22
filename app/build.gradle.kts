@@ -56,6 +56,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
     // Jetpack Compose dependencies
     /*implementation "androidx.compose.ui:ui:1.4.0"
     implementation "androidx.compose.material:material:1.4.0"
