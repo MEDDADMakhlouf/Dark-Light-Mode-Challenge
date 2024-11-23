@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class ThemeViewModel(context : Context) : ViewModel() {
 
     private val sharedPreferences = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
-    val _isDarkTheme = MutableStateFlow(loadThemePreference())
+   private val _isDarkTheme = MutableStateFlow(loadThemePreference())
+    val isDarkTheme : StateFlow<Boolean> = _isDarkTheme
 
     // Toggle the theme
     fun toggleTheme() {
