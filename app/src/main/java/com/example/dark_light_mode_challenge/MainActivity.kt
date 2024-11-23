@@ -15,27 +15,28 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //val themeViewModel : ThemeViewModel by viewModels { themeviewModelFactory(applicationContext)  }
-       //  enableEdgeToEdge()
+        //  enableEdgeToEdge()
         val themeViewModelFactory = ThemeViewModelFactory(applicationContext)
-        val themeViewModel = ViewModelProvider(this, themeViewModelFactory).get(ThemeViewModel::class.java)
+        val themeViewModel =
+            ViewModelProvider(this, themeViewModelFactory).get(ThemeViewModel::class.java)
 
         setContent {
             // DarkLightModeChallengeTheme
             val isDarkMode by themeViewModel._isDarkTheme.collectAsState()
             DarkLightModeChallengeTheme {
-                ThemeContent(themeViewModel = themeViewModel
-                    ,isDarkMode = isDarkMode,)
-
-
+                ThemeContent(
+                    themeViewModel = themeViewModel,
+                    isDarkMode = isDarkMode,
+                )
             }
         }
     }
-}
 
-@Composable
-fun ThemeContent(themeViewModel: ThemeViewModel , isDarkMode: Boolean) {
-    Button(onClick = {themeViewModel.toggleTheme() }) {
-        Text(text = "Toggle Theme")
+    @Composable
+    fun ThemeContent(themeViewModel: ThemeViewModel, isDarkMode: Boolean) {
+        Button(onClick = { themeViewModel.toggleTheme() }) {
+            Text(text = "Toggle Theme")
+        }
     }
 }
 //
