@@ -4,6 +4,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.dark_light_mode_challenge.ThemeViewModel
 
@@ -18,7 +19,8 @@ fun ThemeContent(themeViewModel: ThemeViewModel) {
     fun ThemeContentPreviewLight() {
         DarkLightModeChallengeTheme(darkTheme = false) {
             Button(onClick = { /*TODO*/ }) {
-                Text(text = "Toggle Theme")
+                Text(text = "Toggle Theme",
+                    color = Color.Black)
 
             }
         }
@@ -28,8 +30,12 @@ fun ThemeContent(themeViewModel: ThemeViewModel) {
     @Composable
     fun ThemeContentPreviewDark() {
         DarkLightModeChallengeTheme(darkTheme = true) {
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "Toggle Theme")
+            Button(
+                onClick = { /*TODO*/ }
+
+            ) {
+                Text(text = "Toggle Theme",
+                color = Color.White)
             }
         }
     }

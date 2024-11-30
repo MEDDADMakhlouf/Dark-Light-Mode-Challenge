@@ -12,22 +12,22 @@ import androidx.compose.ui.tooling.preview.Preview
 
 // Define Dark and Light Color Schemes
 val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFFBB86FC),
+    primary = Color(0xFF000000),
     secondary = Color(0xFF03DAC6),
-    background = Color(0xFF121212),
-    surface = Color(0xFF121212),
+    background = Color(0xFF1A1818),
+    surface = Color(0xFF000000),
     onPrimary = Color.Black,
     onSecondary = Color.Black,
-    onBackground = Color.White,
-    onSurface = Color.White
+    onBackground = Color.Black,
+    onSurface = Color.Black
 )
 
 val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF6200EE),
+    primary = Color(0xFFFFFFFF),
     secondary = Color(0xFF03DAC6),
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
+    background = Color.Red,
+    surface = Color.Yellow,
+    onPrimary = Color.Yellow,
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black
