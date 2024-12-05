@@ -17,12 +17,11 @@ import com.example.dark_light_mode_challenge.ui.theme.ThemeContent
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //val themeViewModel : ThemeViewModel by viewModels { themeviewModelFactory(applicationContext)  }
-        //  enableEdgeToEdge()
+
         val themeViewModel: ThemeViewModel by viewModels { ThemeViewModelFactory(applicationContext) }
         setContent {
             // DarkLightModeChallengeTheme
-            val isDarkMode by themeViewModel.isDarkTheme.collectAsState()
+            val isDarkMode = themeViewModel.isDarkTheme.collectAsState().value
             DarkLightModeChallengeTheme (darkTheme = isDarkMode){
                 ThemeContent( themeViewModel = themeViewModel )
             }
